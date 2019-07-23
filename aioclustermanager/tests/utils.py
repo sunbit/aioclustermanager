@@ -35,7 +35,7 @@ def get_k8s_config():
 
         config_k8s["endpoint"] = server_url
         config_k8s["http_scheme"] = schema
-        config_k8s["skip_ssl"] = "true"
+        config_k8s["ca_file"] = cluster_info["cluster"]["certificate-authority"]
     else:
         local_cluster = None
         for context in configuration["contexts"]:

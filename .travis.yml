@@ -32,7 +32,6 @@ before_script:
 - kubectl get pods --namespace kube-system
 - sleep 10
 - kubectl get nodes
-- kubectl config view
 - kubectl get pods --all-namespaces
 - nomad agent -dev &
 script:
