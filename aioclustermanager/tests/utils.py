@@ -53,9 +53,8 @@ def get_k8s_config():
     cluster_info = get_inner_config(configuration["clusters"], local_cluster)
 
     if TRAVIS == "true":
-        config_k8s["user"] = "testinguser"
-        config_k8s["credentials"] = "12345678"
-        config_k8s["auth"] = "basic_auth"
+        config_k8s["token"] = os.environ["K8S_TOKEN"]
+        config_k8s["auth"] = "token"
     elif local_cluster == "minikube":
         config_k8s["certificate"] = user_info["user"]["client-certificate"]
         config_k8s["key"] = user_info["user"]["client-key"]
