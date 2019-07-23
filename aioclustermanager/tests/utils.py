@@ -28,7 +28,7 @@ def get_k8s_config():
     if TRAVIS == "true":
         # defined on testing.csv
         config_k8s["user"] = "testinguser"
-        config_k8s["credentias"] = "12345678"
+        config_k8s["credentials"] = "12345678"
         config_k8s["auth"] = "basic_auth"
     else:
         local_cluster = None

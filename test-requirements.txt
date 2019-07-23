@@ -3,13 +3,10 @@ pyyaml
 pytest>=3.6
 tox==2.7.0
 docker
-Sphinx==1.6.3
-coverage==4.4.1
-flake8-import-order==0.12
-flake8==3.4.1
+coverage
+flake8
 wheel==0.29.0
-flake8-docstrings==1.1.0
-pycodestyle==2.3.1
+pycodestyle
 mock==2.0.0
 pifpaf>=0.27.1
 pytest-cov
