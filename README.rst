@@ -170,4 +170,4 @@ Tests will connect to the local nomad to schedule the jobs
 
 K8S:
 
-Tests will check if there is a k8s context names docker-for-desktop or minikube
+Tests will check if there is a k8s context names docker-desktop or minikube
