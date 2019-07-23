@@ -114,26 +114,26 @@ async def test_get_jobs_limit_k8s(kubernetes):
     assert len(result) <= 1
 
 
-async def test_get_tfjobs_k8s(kubernetes):
-    # We clean up all the jobs on the namespace
+# async def test_get_tfjobs_k8s(kubernetes):
+#     # We clean up all the jobs on the namespace
 
-    result = await kubernetes.define_quota("aiocluster-test", cpu_limit="400m", mem_limit="900M")
-    assert result is True
+#     result = await kubernetes.define_quota("aiocluster-test", cpu_limit="400m", mem_limit="900M")
+#     assert result is True
 
-    await kubernetes.install_tfjobs("aiocluster-test")
+#     await kubernetes.install_tfjobs("aiocluster-test")
 
-    result = await kubernetes.create_tfjob(
-        "aiocluster-test",  # namespace
-        "test-tfjob",  # jobid
-        "gcr.io/tf-on-k8s-dogfood/tf_sample:dc944ff",  # image
-        cpu_limit="300m",
-        mem_limit="800M",
-        workers=1,
-        ps=2,
-        masters=1,
-    )
-    assert result is True
+#     result = await kubernetes.create_tfjob(
+#         "aiocluster-test",  # namespace
+#         "test-tfjob",  # jobid
+#         "gcr.io/tf-on-k8s-dogfood/tf_sample:dc944ff",  # image
+#         cpu_limit="300m",
+#         mem_limit="800M",
+#         workers=1,
+#         ps=2,
+#         masters=1,
+#     )
+#     assert result is True
 
-    await kubernetes.get_tfjob("aiocluster-test", "test-tfjob")
+#     await kubernetes.get_tfjob("aiocluster-test", "test-tfjob")
 
-    await kubernetes.list_tfjobs("aiocluster-test")
+#     await kubernetes.list_tfjobs("aiocluster-test")
