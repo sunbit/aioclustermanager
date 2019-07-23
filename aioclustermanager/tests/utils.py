@@ -29,9 +29,12 @@ def get_k8s_config():
         config_k8s["credentials"] = "12345678"
         config_k8s["auth"] = "basic_auth"
         cluster_info = get_inner_config(configuration["clusters"], "minikube")
+        server_url = cluster_info["cluster"]["server"]
+        if "://" in server_url:
+            schema, server_url = server_url.split("://")
 
-        config_k8s["endpoint"] = cluster_info["cluster"]["server"]
-        config_k8s["http_scheme"] = "https"
+        config_k8s["endpoint"] = server_url
+        config_k8s["http_scheme"] = schema
         config_k8s["skip_ssl"] = "true"
     else:
         local_cluster = None
@@ -61,7 +64,7 @@ def get_k8s_config():
         server_url = cluster_info["cluster"]["server"]
         schema = "http"
         if "://" in server_url:
-            schema, server_url = cluster_info["cluster"]["server"].split("://")
+            schema, server_url = server_url.split("://")
         config_k8s["endpoint"] = server_url
         config_k8s["http_scheme"] = schema
         config_k8s["skip_ssl"] = (
