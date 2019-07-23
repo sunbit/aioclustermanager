@@ -53,7 +53,7 @@ class Configuration:
         elif auth == "basic_auth":
             self.basic_auth = aiohttp.BasicAuth(self.environment["user"], self.environment["credentials"])
         elif auth == "token":
-            self.headers = {"Authorization": "Bearer " + b64decode(self.environment["token"])}
+            self.headers = {"Authorization": "Bearer " + b64decode(self.environment["token"]).decode("utf-8")}
 
         # We create the aiohttp client session
         if self.environment.get("skip_ssl", "false").lower() == "false":
