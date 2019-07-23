@@ -21,7 +21,7 @@ def get_k8s_config():
     with open(home + "/.kube/config", "r") as f:
         configuration = yaml.load(f)
 
-    # TRAVIS = os.environ.get("TRAVIS", "false")
+    TRAVIS = os.environ.get("TRAVIS", "false")
     config_k8s = {}
     # if TRAVIS == "true":
     #     # defined on testing.csv
@@ -52,7 +52,11 @@ def get_k8s_config():
     user_info = get_inner_config(configuration["users"], local_cluster)
     cluster_info = get_inner_config(configuration["clusters"], local_cluster)
 
-    if local_cluster == "minikube":
+    if TRAVIS == "true":
+        config_k8s["user"] = "testinguser"
+        config_k8s["credentials"] = "12345678"
+        config_k8s["auth"] = "basic_auth"
+    elif local_cluster == "minikube":
         config_k8s["certificate"] = user_info["user"]["client-certificate"]
         config_k8s["key"] = user_info["user"]["client-key"]
         config_k8s["auth"] = "certificate_file"
