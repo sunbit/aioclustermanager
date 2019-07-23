@@ -23,49 +23,51 @@ def get_k8s_config():
 
     TRAVIS = os.environ.get("TRAVIS", "false")
     config_k8s = {}
-    # if TRAVIS == "true":
-    #     # defined on testing.csv
-    #     config_k8s["user"] = "testinguser"
-    #     config_k8s["credentials"] = "12345678"
-    #     config_k8s["auth"] = "basic_auth"
-    #     config_k8s["endpoint"] = "10.20.0.40:8443"
-    #     config_k8s["http_scheme"] = "https"
-    #     config_k8s["skip_ssl"] = "true"
-    # else:
-    local_cluster = None
-    for context in configuration["contexts"]:
-        if context["name"] == "docker-desktop":
-            local_cluster = "docker-desktop"
-            break
-        elif context["name"] == "minikube":
-            local_cluster = "minikube"
-            break
+    if TRAVIS == "true":
+        # defined on testing.csv
+        config_k8s["user"] = "testinguser"
+        config_k8s["credentials"] = "12345678"
+        config_k8s["auth"] = "basic_auth"
+        cluster_info = get_inner_config(configuration["clusters"], "minikube")
 
-    if local_cluster is None:
-        raise Exception("Invalid cluster configuration")
+        config_k8s["endpoint"] = cluster_info["cluster"]["server"]
+        config_k8s["http_scheme"] = "https"
+        config_k8s["skip_ssl"] = "true"
+    else:
+        local_cluster = None
+        for context in configuration["contexts"]:
+            if context["name"] == "docker-desktop":
+                local_cluster = "docker-desktop"
+                break
+            elif context["name"] == "minikube":
+                local_cluster = "minikube"
+                break
 
-    user_info = get_inner_config(configuration["users"], local_cluster)
-    cluster_info = get_inner_config(configuration["clusters"], local_cluster)
+        if local_cluster is None:
+            raise Exception("Invalid cluster configuration")
 
-    if local_cluster == "minikube":
-        config_k8s["certificate"] = user_info["user"]["client-certificate"]
-        config_k8s["key"] = user_info["user"]["client-key"]
-        config_k8s["auth"] = "certificate_file"
-    elif local_cluster == "docker-desktop":
-        config_k8s["certificate"] = user_info["user"]["client-certificate-data"]
-        config_k8s["key"] = user_info["user"]["client-key-data"]
-        config_k8s["auth"] = "certificate"
+        user_info = get_inner_config(configuration["users"], local_cluster)
+        cluster_info = get_inner_config(configuration["clusters"], local_cluster)
 
-    server_url = cluster_info["cluster"]["server"]
-    schema = "http"
-    if "://" in server_url:
-        schema, server_url = cluster_info["cluster"]["server"].split("://")
-    config_k8s["endpoint"] = server_url
-    config_k8s["http_scheme"] = schema
-    config_k8s["skip_ssl"] = (
-        "true" if cluster_info["cluster"].get("insecure-skip-tls-verify", False) else "false"
-    )
-    if config_k8s["skip_ssl"] == "false":
-        config_k8s["ca"] = cluster_info["cluster"]["certificate-authority"]
+        if local_cluster == "minikube":
+            config_k8s["certificate"] = user_info["user"]["client-certificate"]
+            config_k8s["key"] = user_info["user"]["client-key"]
+            config_k8s["auth"] = "certificate_file"
+        elif local_cluster == "docker-desktop":
+            config_k8s["certificate"] = user_info["user"]["client-certificate-data"]
+            config_k8s["key"] = user_info["user"]["client-key-data"]
+            config_k8s["auth"] = "certificate"
+
+        server_url = cluster_info["cluster"]["server"]
+        schema = "http"
+        if "://" in server_url:
+            schema, server_url = cluster_info["cluster"]["server"].split("://")
+        config_k8s["endpoint"] = server_url
+        config_k8s["http_scheme"] = schema
+        config_k8s["skip_ssl"] = (
+            "true" if cluster_info["cluster"].get("insecure-skip-tls-verify", False) else "false"
+        )
+        if config_k8s["skip_ssl"] == "false":
+            config_k8s["ca"] = cluster_info["cluster"]["certificate-authority"]
 
     return config_k8s
