@@ -28,7 +28,7 @@ def get_k8s_config():
         config_k8s["user"] = "testinguser"
         config_k8s["credentials"] = "12345678"
         config_k8s["auth"] = "basic_auth"
-        config_k8s["endpoint"] = "localhost:6443"
+        config_k8s["endpoint"] = "10.20.0.40:8443"
         config_k8s["http_scheme"] = "https"
         config_k8s["skip_ssl"] = "true"
     else:
