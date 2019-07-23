@@ -21,7 +21,7 @@ def get_k8s_config():
     with open(home + "/.kube/config", "r") as f:
         configuration = yaml.load(f)
 
-    TRAVIS = os.environ.get("TRAVIS", "false")
+    # TRAVIS = os.environ.get("TRAVIS", "false")
     config_k8s = {}
     # if TRAVIS == "true":
     #     # defined on testing.csv
