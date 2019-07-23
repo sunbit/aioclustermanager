@@ -1,9 +1,6 @@
-language: python
-python:
-- 3.6
 sudo: required
-services:
-- docker
+# We need the systemd for the kubeadm and it's default from 16.04+
+dist: xenial
 env:
   global:
   - CHANGE_MINIKUBE_NONE_USER=true
@@ -13,9 +10,9 @@ env:
   - CHANGE_MINIKUBE_NONE_USER=true
   - KUBECONFIG=$HOME/.kube/config
 install:
-- pip install -r requirements.txt
-- pip install -r test-requirements.txt
-- python setup.py develop
+- pip3 install -r requirements.txt
+- pip3 install -r test-requirements.txt
+- python3 setup.py develop
 before_script:
 # K8S
 - curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
