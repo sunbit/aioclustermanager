@@ -34,7 +34,8 @@ before_script:
 # - minikube update-context
 - kubectl config view
 - kubectl create serviceaccount myuser
-- kubectl create clusterrolebinding myuser-cluster-admin --clusterrole=cluster-admin --user=myuser
+- kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
+- kubectl create clusterrolebinding myuser-cluster-admin --clusterrole=cluster-admin --user=system:serviceaccount:default:myuser
 # NOMAD
 - curl -Lo nomad.tar.gz https://releases.hashicorp.com/nomad/0.7.1/nomad_0.7.1_linux_amd64.zip
 - unzip nomad.tar.gz
