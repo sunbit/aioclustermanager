@@ -1,6 +1,6 @@
 pytest-asyncio>=0.8.0
 pyyaml
-pytest==3.2.1
+pytest>=3.6
 tox==2.7.0
 docker
 Sphinx==1.6.3
