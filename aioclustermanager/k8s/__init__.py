@@ -93,7 +93,7 @@ class Configuration:
 
     def load_certificate_file(self):
         self.ssl_context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
-        if "key_file" in self.environment:
+        if "key" in self.environment:
             self.ssl_context.load_cert_chain(
                 certfile=self.environment["certificate"], keyfile=self.environment["key"]
             )
