@@ -1,6 +1,9 @@
 sudo: required
 # We need the systemd for the kubeadm and it's default from 16.04+
 dist: xenial
+language: python
+python:
+- "3.7"
 env:
   global:
   - CHANGE_MINIKUBE_NONE_USER=true
