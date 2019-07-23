@@ -62,7 +62,9 @@ def get_k8s_config():
         schema, server_url = cluster_info["cluster"]["server"].split("://")
     config_k8s["endpoint"] = server_url
     config_k8s["http_scheme"] = schema
-    config_k8s["skip_ssl"] = "true" if cluster_info["cluster"]["insecure-skip-tls-verify"] else "false"
+    config_k8s["skip_ssl"] = (
+        "true" if cluster_info["cluster"].get("insecure-skip-tls-verify", False) else "false"
+    )
     if config_k8s["skip_ssl"] == "false":
         config_k8s["ca"] = cluster_info["cluster"]["certificate-authority"]
 
