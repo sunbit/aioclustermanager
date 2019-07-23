@@ -31,6 +31,8 @@ before_script:
 - docker run -v /usr/local/bin:/hostbin munnerz/ubuntu-nsenter cp /nsenter /hostbin/nsenter
 - kubectl get pods --namespace kube-system
 - sleep 10
+- kubectl get nodes
+- kubectl config view
 - kubectl get pods --all-namespaces
 - nomad agent -dev &
 script:
