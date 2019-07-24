@@ -1,4 +1,4 @@
-0.3.20 (unreleased)
+0.3.20 (2019-07-24)
 -------------------
 
 - Support of base64 ca and fixing bugs
