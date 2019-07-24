@@ -1,7 +1,8 @@
 0.3.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Support of base64 ca and fixing bugs
+  [bloodbare]
 
 
 0.3.19 (2018-06-10)
