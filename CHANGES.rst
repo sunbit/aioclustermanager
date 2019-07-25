@@ -1,7 +1,8 @@
 0.3.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Adding image pull secrets
+  [bloodbare]
 
 
 0.3.20 (2019-07-24)
