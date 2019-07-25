@@ -1,4 +1,4 @@
-0.3.21 (unreleased)
+0.3.21 (2019-07-25)
 -------------------
 
 - Adding image pull secrets
