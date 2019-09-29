@@ -1,4 +1,4 @@
-0.3.22 (unreleased)
+0.3.22 (2019-09-29)
 -------------------
 
 - Adding labels on job and fixing tests
