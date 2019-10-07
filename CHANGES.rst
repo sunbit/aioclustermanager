@@ -1,4 +1,4 @@
-0.3.23 (unreleased)
+0.3.23 (2019-10-07)
 -------------------
 
 - Adding imagePullPolicy parameter on jobs
