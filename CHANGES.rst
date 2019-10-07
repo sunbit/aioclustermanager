@@ -1,7 +1,8 @@
 0.3.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Adding imagePullPolicy parameter on jobs
+  [bloodbare]
 
 
 0.3.22 (2019-09-29)

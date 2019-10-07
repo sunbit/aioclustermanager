@@ -60,6 +60,11 @@ class K8SJob(Job):
             job_info["spec"]["template"]["spec"]["imagePullSecrets"] = []
             job_info["spec"]["template"]["spec"]["imagePullSecrets"].append({"name": kw["pullSecrets"]})
 
+        if "imagePullPolicy" in kw and kw["imagePullPolicy"] is not None:
+            job_info["spec"]["template"]["spec"]["containers"][0]["imagePullPolicy"] = kw[
+                "imagePullPolicy"
+            ]  # noqa
+
         if "entrypoint" in kw and kw["entrypoint"] is not None:
             job_info["spec"]["template"]["spec"]["containers"][0]["entrypoint"] = kw["entrypoint"]  # noqa
 
