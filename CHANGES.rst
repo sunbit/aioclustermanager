@@ -1,4 +1,4 @@
-0.3.24 (unreleased)
+0.3.24 (2020-08-21)
 -------------------
 
 - Adding deployment logic
