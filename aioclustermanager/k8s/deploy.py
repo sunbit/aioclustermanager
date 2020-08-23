@@ -143,6 +143,11 @@ class K8SDeploy(Deploy):
         if "tolerations" in kw and kw["tolerations"] is not None:
             deploy_info["spec"]["template"]["spec"]["tolerations"] = kw["tolerations"]
 
+        if "securityContext" in kw and kw["securityContext"] is not None:
+            deploy_info["spec"]["template"]["spec"]["containers"][0]["securityContext"] = kw[
+                "securityContext"
+            ]
+
         return deploy_info
 
     def get_payload(self):
