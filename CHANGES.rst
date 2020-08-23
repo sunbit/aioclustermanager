@@ -1,4 +1,4 @@
-0.3.25 (unreleased)
+0.3.25 (2020-08-24)
 -------------------
 
 - Adding affinity and toleration
