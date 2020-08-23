@@ -1,4 +1,4 @@
-0.3.26 (unreleased)
+0.3.26 (2020-08-24)
 -------------------
 
 - Nothing changed yet.
