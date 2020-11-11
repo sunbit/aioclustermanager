@@ -1,4 +1,4 @@
-0.3.27 (unreleased)
+0.3.27 (2020-11-11)
 -------------------
 
 - Adding nodeSelector
