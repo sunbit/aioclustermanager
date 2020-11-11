@@ -1,7 +1,8 @@
 0.3.27 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Adding nodeSelector
+  [bloodbare]
 
 
 0.3.26 (2020-08-24)

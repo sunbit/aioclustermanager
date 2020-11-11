@@ -140,6 +140,9 @@ class K8SDeploy(Deploy):
         if "affinity" in kw and kw["affinity"] is not None:
             deploy_info["spec"]["template"]["spec"]["affinity"] = kw["affinity"]
 
+        if "nodeSelector" in kw and kw["nodeSelector"] is not None:
+            deploy_info["spec"]["template"]["spec"]["nodeSelector"] = kw["nodeSelector"]
+
         if "tolerations" in kw and kw["tolerations"] is not None:
             deploy_info["spec"]["template"]["spec"]["tolerations"] = kw["tolerations"]
 
