@@ -1,4 +1,4 @@
-0.3.29 (unreleased)
+0.3.29 (2021-05-11)
 -------------------
 
 - Fix typo in previous release
