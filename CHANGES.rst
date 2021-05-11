@@ -1,4 +1,4 @@
-0.3.28 (unreleased)
+0.3.28 (2021-05-11)
 -------------------
 
 - Added support to set a job containers as privileged
